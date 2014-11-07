@@ -20,8 +20,6 @@ LOCAL_SRC_FILES += com/qualcomm/qcmedia/QCTimedText.java
 LOCAL_MODULE := qcmediaplayer
 LOCAL_MODULE_PATH := $(TARGET_OUT_JAVA_LIBRARIES)
 
-ifeq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS), true)
 ifndef TARGET_DISABLE_DASH
 include $(BUILD_JAVA_LIBRARY)
-endif
 endif
