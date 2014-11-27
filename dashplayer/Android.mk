@@ -42,6 +42,10 @@ LOCAL_C_INCLUDES := \
 	$(TOP)/frameworks/av/media/libstagefright/mpeg2ts             \
 	$(TOP)/frameworks/av/media/libstagefright/rtsp                \
 	$(TOP)/hardware/qcom/media-legacy-armani/mm-core/inc                        \
+	$(TOP)/hardware/qcom/display-legacy-armani/libgralloc                       \
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+
+LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
 ifeq ($(PLATFORM_SDK_VERSION), 18)
   LOCAL_CFLAGS += -DANDROID_JB_MR2
@@ -49,8 +53,8 @@ endif
 
 LOCAL_MODULE:= libdashplayer
 
-LOCAL_MODULE_TAGS := eng
+LOCAL_MODULE_TAGS := optional
 
-ifndef TARGET_DISABLE_DASH
+ifeq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS), true)
  include $(BUILD_SHARED_LIBRARY)
 endif
